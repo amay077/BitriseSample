@@ -22,7 +22,16 @@ namespace BitriseSample.UITests
         [SetUp]
         public void BeforeEachTest()
         {
-            app = AppInitializer.StartApp(platform);
+            string deviceUDID = Environment.GetEnvironmentVariable("IOS_SIMULATOR_UDID");
+            string bundleID = "net.amay077.bitrisesample";
+
+            ConfigureApp
+                .iOS
+                .InstalledApp(bundleID)
+                .DeviceIdentifier(deviceUDID)
+                .StartApp();
+
+            //app = AppInitializer.StartApp(platform);
         }
 
         [Test]
